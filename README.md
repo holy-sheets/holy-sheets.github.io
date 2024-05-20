@@ -1,6 +1,6 @@
 # HolySheets!
 
-![Logo](docs/logo.svg)
+![Logo](/docs/logo.svg)
 
 `HolySheets!` is a TypeScript library that simplifies the process of interacting with the Google Sheets API. It offers a set of tools for reading and writing data to and from Google Sheets, with a Prisma-like syntax.
 
