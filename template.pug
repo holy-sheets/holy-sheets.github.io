@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title Documentação HolySheets!
+    link(rel="stylesheet",href="https://matcha.mizu.sh/matcha.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js")
+    script.
+      hljs.highlightAll();
+
+  body.layout-simple
+    header
+      h1.success HolySheets!
+      nav
+          menu
+          li
+            a(href="#" onclick="event.preventDefault();document.querySelector('html').dataset.colorScheme = (document.querySelector('html').dataset.colorScheme ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'light' ? 'dark' : 'light'")
+              span='Toggle'
+    aside 
+      nav
+        ul
+          li 
+            a(href='#'+items.id) #{items.text}
+          if items.children && items.children.length > 0  
+            each item in items.children
+              li 
+                  a(href='#'+item.id)=item.text
+                  ul
+                      if item.children && item.children.length > 0
+                      each child in item.children
+                          li
+                            a(href='#'+child.id)=child.text
+                              if child.children && child.children.length > 0
+                                ul
+                                    each subchild in child.children
+                                        li
+                                          a(href='#'+subchild.id)=subchild.text
+                        
+    main!= content
+
+

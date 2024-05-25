@@ -1,0 +1,584 @@
+<!DOCTYPE html><html><head><title>Documentação HolySheets!</title><link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script><script>hljs.highlightAll();
+</script></head><body class="layout-simple"><header><h1 class="success">HolySheets!</h1><nav><menu></menu><li><a href="#" onclick="event.preventDefault();document.querySelector('html').dataset.colorScheme = (document.querySelector('html').dataset.colorScheme ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'light' ? 'dark' : 'light'"><span>Toggle</span></a></li></nav></header><aside> <nav><ul><li> <a href="#holysheets--1716602014664">
+      HolySheets!
+    </a></li><li> <a href="#advantages-1716602014664">
+      Advantages
+    </a><ul></ul></li><li> <a href="#features-1716602014664">
+      Features
+    </a><ul></ul></li><li> <a href="#installation-1716602014664">
+      Installation
+    </a><ul></ul></li><li> <a href="#usage-1716602014665">
+      Usage
+    </a><ul></ul></li><li> <a href="#api-documentation-1716602014665">
+      API documentation
+    </a><ul><li><a href="#base-1716602014665">
+      base
+    </a></li><li><a href="#findfirst-1716602014665">
+      findFirst
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#example-1716602014665">
+      Example
+    </a></li></ul></a></li><li><a href="#findmany-1716602014665">
+      findMany
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#example-1716602014665">
+      Example
+    </a></li></ul></a></li><li><a href="#updatefirst-1716602014665">
+      updateFirst
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#example-1716602014665">
+      Example
+    </a></li></ul></a></li><li><a href="#updatemany-1716602014665">
+      updateMany
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#example-1716602014665">
+      Example
+    </a></li></ul></a></li><li><a href="#clearfirst-1716602014665">
+      clearFirst
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#example-1716602014665">
+      Example
+    </a></li></ul></a></li><li><a href="#clearmany-1716602014665">
+      clearMany
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li></ul></a></li><li><a href="#deletefirst-1716602014665">
+      deleteFirst
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#examples-1716602014665">
+      Examples
+    </a></li></ul></a></li><li><a href="#deletemany-1716602014665">
+      deleteMany
+    <ul><li><a href="#parameters-1716602014665">
+      Parameters
+    </a></li><li><a href="#example-1716602014665">
+      Example
+    </a></li></ul></a></li><li><a href="#filter-conditions-1716602014665">
+      Filter conditions
+    <ul><li><a href="#equals-1716602014665">
+      equals
+    </a></li><li><a href="#not-1716602014665">
+      not
+    </a></li><li><a href="#in-1716602014665">
+      in
+    </a></li><li><a href="#notin-1716602014665">
+      notIn
+    </a></li><li><a href="#lt-1716602014665">
+      lt
+    </a></li><li><a href="#lte-1716602014665">
+      lte
+    </a></li><li><a href="#gt-1716602014665">
+      gt
+    </a></li><li><a href="#gte-1716602014665">
+      gte
+    </a></li><li><a href="#contains-1716602014665">
+      contains
+    </a></li><li><a href="#search-1716602014665">
+      search
+    </a></li><li><a href="#startswith-1716602014665">
+      startsWith
+    </a></li><li><a href="#endswith-1716602014665">
+      endsWith
+    </a></li></ul></a></li></ul></li><li> <a href="#license-1716602014665">
+      License
+    </a><ul></ul></li><li> <a href="#note-1716602014665">
+      Note
+    </a><ul></ul></li></ul></nav></aside><main><h1 id="holysheets--1716602014664">
+      HolySheets!
+    </h1>
+  <p><img src="docs/logo.svg" alt="Logo"></p>
+<p><code>HolySheets!</code> is a TypeScript library that simplifies the process of interacting with the Google Sheets API. It offers a set of tools for reading and writing data to and from Google Sheets, with a Prisma-like syntax.</p>
+
+    <h2 id="advantages-1716602014664">
+      Advantages
+    </h2>
+  <ul>
+<li><strong>No more memorizing range codes</strong>: With <code>HolySheets!</code>, you don't need to remember complex range codes. The library handles all the range-related operations for you, allowing you to focus on your data.</li>
+</ul>
+
+    <h2 id="features-1716602014664">
+      Features
+    </h2>
+  <ul>
+<li>Easy-to-use API for interacting with Google Sheets.</li>
+<li>Supports reading and writing data.</li>
+<li>Supports authentication with the Google Sheets API.</li>
+<li>TypeScript support: Enhances development with static typing and intellisense.</li>
+</ul>
+
+    <h2 id="installation-1716602014664">
+      Installation
+    </h2>
+  <p>You can install <code>HolySheets!</code> using npm:</p>
+<pre><code class="language-bash">npm install holysheets
+</code></pre>
+
+    <h2 id="usage-1716602014665">
+      Usage
+    </h2>
+  <p>To use <code>HolySheets!</code> in your TypeScript project, you need to import it and initialize it with your Google Sheets credentials. Here's an example:</p>
+<pre><code class="language-typescript">  interface User {
+    name: string
+    email: string
+    age: number
+  }
+
+  const hollySheets = new HolySheets({
+    spreadsheetId: 'spreadsheet-id',
+    privateKey: credentials.private_key, // Your credentials
+    clientEmail: credentials.client_email // Your client email
+  })  
+
+  const user = holySheets.base&lt;User&gt;('Users')
+
+  await user.findMany({
+    where: {
+      name: {
+        contains: 'Joe'
+      }
+    }
+  })  
+  /// Find all users named Joe in Users sheet
+</code></pre>
+<p>:warning: Before using HolySheets, it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the <a href="docs/getting-credentials.md">Getting Credentials</a> guide.</p>
+
+    <h2 id="api-documentation-1716602014665">
+      API documentation
+    </h2>
+  
+    <h3 id="base-1716602014665">
+      base
+    </h3>
+  <p>The <code>base</code> method is used to set the sheet that is going to be used.</p>
+<pre><code class="language-typescript">const baseConfig = base('Users');
+</code></pre>
+<p>You can also use your own type definition to have access to typescript static typing checking, for instance:</p>
+<pre><code class="language-typescript">interface User {
+ name: string
+ email: string
+ age: number
+}
+const baseConfig = base&lt;User&gt;('Users');
+/// Now you should only be able to add where clauses based on User interface keys
+</code></pre>
+
+    <h3 id="findfirst-1716602014665">
+      findFirst
+    </h3>
+  <p>Retrieves the first row that matches the given filter criteria.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+</ul>
+
+    <h4 id="example-1716602014665">
+      Example
+    </h4>
+  <pre><code class="language-typescript">const user = await userSheet.findFirst({
+  where: {
+    email: 'john.doe@example.com'
+  }
+});
+console.log(user);
+// Output: { range: 'Users!A2:D2', row: 2, fields: { id: 1, name: 'John Doe', email: 'john.doe@example.com', points: 1200 } }
+</code></pre>
+
+    <h3 id="findmany-1716602014665">
+      findMany
+    </h3>
+  <p>Retrieves all rows that match the given filter criteria.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+</ul>
+
+    <h4 id="example-1716602014665">
+      Example
+    </h4>
+  <pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    points: {
+      greaterThan: 1000
+    }
+  }
+});
+console.log(users);
+// Output: [
+//   { range: 'Users!A2:D2', row: 2, fields: { id: 1, name: 'John Doe', points: 1050 } },
+//   { range: 'Users!A3:D3', row: 3, fields: { id: 2, name: 'Jane Smith', points: 1100 } }
+// ]
+</code></pre>
+
+    <h3 id="updatefirst-1716602014665">
+      updateFirst
+    </h3>
+  <p>Updates the first row that matches the given filter criteria with the specified new data.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+<li><code>data</code>: An object specifying the new data to update the matching row with.</li>
+</ul>
+
+    <h4 id="example-1716602014665">
+      Example
+    </h4>
+  <p>Before update:</p>
+<pre><code class="language-typescript">// Assuming the sheet has the following data:
+// | id | name    | points |
+// |----|---------|--------|
+// | 1  | John    | 950    |
+// | 2  | Jane    | 1050   |
+// | 3  | Maria   | 1100   |
+
+const updatedUser = await userSheet.updateFirst(
+  { where: { name: { contains: 'Jane' } } },
+  { data: { points: 1150 } }
+);
+console.log(updatedUser);
+// Output: { range: 'Users!A3:D3', row: 3, fields: { id: 2, name: 'Jane', points: 1150 } }
+</code></pre>
+<p>// The sheet now has the following data:
+// | id | name    | points |
+// |----|---------|--------|
+// | 1  | John    | 950    |
+// | 2  | Jane    | 1150   |
+// | 3  | Maria   | 1100   |</p>
+
+    <h3 id="updatemany-1716602014665">
+      updateMany
+    </h3>
+  <p>Updates all rows that match the given filter criteria with the specified new data.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+<li><code>data</code>: An object specifying the new data to update the matching rows with.</li>
+</ul>
+
+    <h4 id="example-1716602014665">
+      Example
+    </h4>
+  <pre><code class="language-typescript">// Assuming the sheet has the following data:
+// | id | name    | points |
+// |----|---------|--------|
+// | 1  | John    | 950    |
+// | 2  | Jane    | 1050   |
+// | 3  | Maria   | 1100   |
+
+const updatedUsers = await userSheet.updateMany(
+  { where: { points: { greaterThan: 1000 } } },
+  { data: { points: 1200 } }
+);
+console.log(updatedUsers);
+// Output: [
+//   { range: 'Users!A2:D2', row: 2, fields: { id: 2, name: 'Jane', points: 1200 } },
+//   { range: 'Users!A3:D3', row: 3, fields: { id: 3, name: 'Maria', points: 1200 } }
+// ]
+
+// The sheet now has the following data:
+// | id | name    | points |
+// |----|---------|--------|
+// | 1  | John    | 950    |
+// | 2  | Jane    | 1200   |
+// | 3  | Maria   | 1200   |
+</code></pre>
+
+    <h3 id="clearfirst-1716602014665">
+      clearFirst
+    </h3>
+  <p>Clears the data in the first row that matches the given filter criteria.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+</ul>
+
+    <h4 id="example-1716602014665">
+      Example
+    </h4>
+  <pre><code class="language-typescript">const clearedUser = await userSheet.clearFirst({
+  where: {
+    name: 'John Doe'
+  }
+});
+console.log(clearedUser);
+// Output: { range: 'Users!A2:D2', row: 2, fields: { id: 1, name: '', email: '', points: '' } }
+</code></pre>
+
+    <h3 id="clearmany-1716602014665">
+      clearMany
+    </h3>
+  <p>Clears the data in all rows that match the given filter criteria.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+</ul>
+<pre><code class="language-typescript">const clearedUsers = await userSheet.clearMany({
+  where: {
+    points: {
+      lessThan: 1000
+    }
+  }
+});
+console.log(clearedUsers);
+// Output: [
+//   { range: 'Users!A2:D2', row: 2, fields: { id: 1, name: '', points: '' } }
+// ]
+
+// The sheet now has the following data:
+// | id | name    | points |
+// |----|---------|--------|
+// | 1  |         |        |
+// | 2  | Jane    | 1050   |
+// | 3  | Maria   | 1100   |
+</code></pre>
+
+    <h3 id="deletefirst-1716602014665">
+      deleteFirst
+    </h3>
+  <p>Deletes the first row that matches the given filter criteria.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+</ul>
+
+    <h4 id="examples-1716602014665">
+      Examples
+    </h4>
+  <pre><code class="language-typescript">const deletedUser = await userSheet.deleteFirst({
+  where: {
+    email: 'john.doe@example.com'
+  }
+});
+console.log(deletedUser);
+// Output: { range: 'Users!A2:D2', row: 2, fields: { id: 1, name: 'John Doe', email: 'john.doe@example.com', points: 1200 } }
+</code></pre>
+
+    <h3 id="deletemany-1716602014665">
+      deleteMany
+    </h3>
+  <p>Deletes all rows that match the given filter criteria.</p>
+
+    <h4 id="parameters-1716602014665">
+      Parameters
+    </h4>
+  <ul>
+<li><code>filter</code>: An object specifying the filter criteria. Each key corresponds to a column name and each value specifies the condition to be met.</li>
+</ul>
+
+    <h4 id="example-1716602014665">
+      Example
+    </h4>
+  <pre><code class="language-typescript">const deletedUsers = await userSheet.deleteMany({
+  where: {
+    points: {
+      lessThan: 1000
+    }
+  }
+});
+console.log(deletedUsers);
+// Output: [
+//   { range: 'Users!A2:D2', row: 2, fields: { id: 1, name: 'John', points: 950 } }
+// ]
+
+// The sheet now has the following data:
+// | id | name    | points |
+// |----|---------|--------|
+// | 2  | Jane    | 1050   |
+// | 3  | Maria   | 1100   |
+</code></pre>
+
+    <h3 id="filter-conditions-1716602014665">
+      Filter conditions
+    </h3>
+  <p><code>HolySheets!</code> provides a variety of filter conditions to help you query data from your Google Sheets. These filters allow you to specify criteria for selecting rows based on the values in their columns.</p>
+
+    <h4 id="equals-1716602014665">
+      equals
+    </h4>
+  <p>Checks if the value in the column equals the specified value.</p>
+<pre><code class="language-typescript">const user = await userSheet.findFirst({
+  where: {
+    email: {
+      equals: 'john.doe@example.com'
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="not-1716602014665">
+      not
+    </h4>
+  <p>Checks if the value in the column does not equal the specified value.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    email: {
+      not: 'john.doe@example.com'
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="in-1716602014665">
+      in
+    </h4>
+  <p>Checks if the value in the column is included in the specified array.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    role: {
+      in: ['admin', 'editor']
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="notin-1716602014665">
+      notIn
+    </h4>
+  <p>Checks if the value in the column is not included in the specified array.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    role: {
+      notIn: ['guest', 'banned']
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="lt-1716602014665">
+      lt
+    </h4>
+  <p>Checks if the numeric value in the column is less than the specified value.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    age: {
+      lt: 30
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="lte-1716602014665">
+      lte
+    </h4>
+  <p>Checks if the numeric value in the column is less than or equal to the specified value.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    age: {
+      lte: 30
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="gt-1716602014665">
+      gt
+    </h4>
+  <p>Checks if the numeric value in the column is greater than the specified value.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    points: {
+      gt: 1000
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="gte-1716602014665">
+      gte
+    </h4>
+  <p>Checks if the numeric value in the column is greater than or equal to the specified value.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    points: gte(1000)
+  }
+});
+</code></pre>
+
+    <h4 id="contains-1716602014665">
+      contains
+    </h4>
+  <p>Checks if the string value in the column contains the specified substring.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    name:{
+      contains: 'Doe'
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="search-1716602014665">
+      search
+    </h4>
+  <p>Performs a case-insensitive search to check if the string value in the column contains the specified substring.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    name: {
+      search: 'doe'
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="startswith-1716602014665">
+      startsWith
+    </h4>
+  <p>Checks if the string value in the column starts with the specified substring.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    name: {
+      startsWith: 'John'
+    }
+  }
+});
+</code></pre>
+
+    <h4 id="endswith-1716602014665">
+      endsWith
+    </h4>
+  <p>Checks if the string value in the column ends with the specified substring.</p>
+<pre><code class="language-typescript">const users = await userSheet.findMany({
+  where: {
+    email: {
+      endsWith: '@example.com'
+    }
+  }
+});
+</code></pre>
+
+    <h2 id="license-1716602014665">
+      License
+    </h2>
+  <p><code>HolySheets!</code> is licensed under the MIT License. For more details, see the <a href="LICENSE">LICENSE</a> file in the project repository.</p>
+
+    <h2 id="note-1716602014665">
+      Note
+    </h2>
+  <p>While <code>HolySheets!</code> provides a simplified interface for managing Google Sheets data, it is not intended to replace a dedicated database system. Please consider the specific needs and requirements of your project when deciding whether to use <code>HolySheets!</code>.</p>
+</main></body></html>
