@@ -56,33 +56,64 @@ function buildHierarchy(flatList: FlatItem[]): FlatItem | null {
     return root;
 }
 
-fs.readFile('node_modules/holysheets/README.md', 'utf8', async (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    const contentHTMLString = await marked(data);
-    const contentHTML = load(contentHTMLString);
-    const headers = contentHTML('h1,h2,h3,h4,h5,h6');
-    const headersList = headers.map((_index, header): NavItem => {
-        const id = contentHTML(header).attr('id');
-        const text = contentHTML(header).text();
-        const level = parseInt(header.tagName.replace('h', ''));
-        return { text, level, id, children: []};
-    })
-
-    const items = buildHierarchy(headersList.toArray());
-
-    const html = pug.renderFile('template.pug', {
-        pageTitle: 'HolySheets! Documentation',
-        content: contentHTML('body').html(),
-        items
+const markdownToHTML = (options: {input: string, output: string}): void => {
+    const { input, output } = options;
+    fs.readFile(input, 'utf8', async (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+    
+        const contentHTMLString = await marked(data);
+        const contentHTML = load(contentHTMLString);
+        const headers = contentHTML('h1,h2,h3,h4,h5,h6');
+        const headersList = headers.map((_index, header): NavItem => {
+            const id = contentHTML(header).attr('id');
+            const text = contentHTML(header).text();
+            const level = parseInt(header.tagName.replace('h', ''));
+            return { text, level, id, children: []};
+        })
+    
+        const items = buildHierarchy(headersList.toArray());
+    
+        const html = pug.renderFile('template.pug', {
+            pageTitle: 'HolySheets! Documentation',
+            content: contentHTML('body').html(),
+            items
+        });
+    
+        fs.writeFile(output, html, 'utf8', (err) => {
+            if (err) {
+                console.error(err);
+            }
+        });
     });
+}
 
-    fs.writeFile('index.html', html, 'utf8', (err) => {
+const copyFile = (source: string, target: string): void => {
+    fs.copyFile(source, target, (err) => {
         if (err) {
             console.error(err);
         }
     });
+}
+
+const createDirectory = (path: string): void => {
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+    }
+}
+
+createDirectory('docs');
+
+markdownToHTML({
+  input: 'node_modules/holysheets/README.md',
+  output: 'index.html'
 });
+
+markdownToHTML({
+  input: 'node_modules/holysheets/docs/getting-credentials.md',
+  output: 'getting-credentials.html'
+});
+
+copyFile('node_modules/holysheets/docs/logo.svg', 'docs/logo.svg');
