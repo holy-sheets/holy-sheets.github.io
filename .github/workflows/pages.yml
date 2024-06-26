@@ -1,5 +1,5 @@
 on: push
-name: TOC Generator
+name: Deploy to GitHub Pages
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,6 +21,6 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./path-to-your-generated-files  # Substitua pelo caminho correto
-          publish_branch: gh-pages  # Certifique-se de que o branch gh-pages está correto
+          github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./
+          publish_branch: gh-pages 
