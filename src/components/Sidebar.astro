@@ -1,0 +1,29 @@
+---
+export interface SidebarItem {
+    icon: string;
+    label: string;
+    href: string;
+}
+
+interface Props {
+    items: SidebarItem[]
+}
+
+const { items } = Astro.props
+---
+
+<aside class="flex md:min-h-screen md:w-[264px] bg-slate-100 p-4 md:px-6
+    md:sticky before:content-[''] before:absolute before:bg-slate-100 top-0
+    before:h-full before:w-screen before:right-[100%] before:top-0
+    md:border-r-slate-200 md:border-r
+    ">
+    <ul class="w-full">
+        {items.map((item: SidebarItem) => {
+            return <li class="w-full">
+                <a class="hover:bg-slate-200 transition p-2 rounded-lg w-full block text-slate-800" href={item.href}>
+                    {item.label}
+                </a>
+            </li>
+        })}
+    </ul>
+</aside>
