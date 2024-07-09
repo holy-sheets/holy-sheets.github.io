@@ -12,10 +12,10 @@ layout: ../../layouts/Docs.astro
 
 ## Features
 
-* Easy-to-use API for interacting with Google Sheets.
-* Supports reading and writing data.
-* Supports authentication with the Google Sheets API.
-* TypeScript support: Enhances development with static typing and intellisense.
+- Easy-to-use API for interacting with Google Sheets.
+- Supports reading and writing data.
+- Supports authentication with the Google Sheets API.
+- TypeScript support: Enhances development with static typing and intellisense.
 
 ## Installation
 
