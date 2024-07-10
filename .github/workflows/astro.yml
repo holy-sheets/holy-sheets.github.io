@@ -88,3 +88,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Set GitHub Pages branch
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git checkout --orphan gh-pages
+          git rm -rf .
+          git commit --allow-empty -m "Initializing gh-pages branch"
+          git push origin gh-pages
