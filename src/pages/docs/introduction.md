@@ -1,5 +1,8 @@
 ---
 layout: ../../layouts/Docs.astro
+title: "Introduction"
+slug: introduction
+next: usage
 ---
 
 # Introduction
@@ -24,7 +27,3 @@ You can install **HolySheets!** using npm:
 ```
 npm install holysheets
 ```
-
-## Usage
-
-To use **HolySheets!** in your TypeScript project, you need to import it and initialize it with your Google Sheets credentials. Here's an example:
