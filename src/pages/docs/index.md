@@ -2,7 +2,7 @@
 layout: ../../layouts/Docs.astro
 title: "Introduction"
 slug: introduction
-next: usage
+icon: book
 ---
 
 # Introduction

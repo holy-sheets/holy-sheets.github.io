@@ -1,4 +1,5 @@
 ---
+import Icons from "./Icons.astro";
 export interface SidebarItem {
   icon: string;
   label: string;
@@ -15,7 +16,7 @@ const { items, active } = Astro.props;
 ---
 
 <aside
-  class="flex md:min-h-screen md:w-[264px] bg-slate-100 p-4 md:px-6
+  class="flex md:min-h-screen md:w-[284px] bg-slate-100 p-4 md:px-6
     md:sticky before:content-[''] before:absolute before:bg-slate-100 top-0
     before:h-full before:w-screen before:right-[100%] before:top-0
     md:border-r-slate-200 md:border-r"
@@ -26,10 +27,11 @@ const { items, active } = Astro.props;
         return (
           <li class="w-full">
             <a
-              class={`hover:bg-slate-200 transition p-2 rounded-lg w-full block text-slate-800
+              class={`hover:bg-slate-200 transition p-2 rounded-lg w-full text-slate-800 flex
               ${active === item.slug ? "bg-slate-200" : ""}`}
               href={item.href}
             >
+              <Icons icon={item.icon} />
               {item.label}
             </a>
           </li>

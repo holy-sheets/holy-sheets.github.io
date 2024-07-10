@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/Docs.astro
-title: "Introduction"
+title: Getting Credentials
 slug: getting-credentials
-next: usage
+icon: contract
 ---
 
 # Getting Google Credentials

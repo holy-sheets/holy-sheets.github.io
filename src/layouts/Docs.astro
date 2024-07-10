@@ -4,26 +4,44 @@ import Sidebar, { type SidebarItem } from "../components/Sidebar.astro";
 import Main from "../components/Main.astro";
 import Header from "../components/Header.astro";
 
-const sidebarItems: SidebarItem[] = [
+type MarkdownModule = {
+  frontmatter: {
+    title: string;
+    slug: string;
+    icon: string;
+  };
+  url: string;
+};
+
+const docs: Record<string, MarkdownModule> = import.meta.glob(
+  "../pages/docs/**/*.md",
   {
-    label: "Introduction",
-    href: "/docs/introduction",
-    icon: "Home",
-    slug: "introduction",
+    eager: true,
   },
-  {
-    label: "Usage",
-    href: "/docs/usage",
-    icon: "Code",
-    slug: "usage",
-  },
-  {
-    label: "Getting Credentials",
-    href: "/docs/getting-credentials",
-    icon: "Key",
-    slug: "getting-credentials",
-  },
+);
+
+const slugs = [
+  "introduction",
+  "usage",
+  "getting-credentials",
+  "api",
+  "filters",
+  "note",
 ];
+
+const sidebarItems: SidebarItem[] = slugs.map((slug) => {
+  const doc = Object.values(docs || {}).find(
+    (doc) => doc.frontmatter.slug === slug,
+  );
+  if (!doc) throw new Error(`Doc not found for slug: ${slug}`);
+
+  return {
+    icon: doc.frontmatter.icon,
+    label: doc.frontmatter.title,
+    href: doc.url,
+    slug: doc.frontmatter.slug,
+  };
+});
 
 type Props = MarkdownLayoutProps<{
   title: string;

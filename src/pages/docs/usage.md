@@ -2,7 +2,7 @@
 layout: ../../layouts/Docs.astro
 title: Usage
 slug: usage
-previous: introduction
+icon: play
 ---
 
 # Usage
