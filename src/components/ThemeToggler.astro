@@ -1,21 +1,72 @@
 ---
-
+import Icons from "./Icons.astro";
 ---
 
-<div>
-  <script is:inline>
-    const configs = {
-      key: "theme",
-      dark: "dark",
-      light: "light",
-    };
-    const themeLocalStorage = localStorage.getItem(configs.key);
-    const themeSystem = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? configs.dark
-      : configs.light;
-    const theme = themeLocalStorage || themeSystem;
-    document.documentElement.setAttribute("class", theme);
-  </script>
-  <button data-sel="button"></button>
-</div>
+<button aria-label="Theme toggler" data-theme-toggle>
+  <span class="sun"> <Icons icon="sun" /></span>
+  <span class="moon"> <Icons icon="moon" /></span>
+</button>
+
+<style>
+  button:hover {
+    transform: scale(0.9);
+  }
+
+  button:active {
+    transform: scale(1);
+  }
+
+  .moon {
+    display: none;
+  }
+
+  :global(.dark) .moon {
+    display: inline-block;
+  }
+
+  :global(.dark) .sun {
+    display: none;
+  }
+</style>
+
+<script>
+  const COLOR_MODE = "COLOR_MODE";
+  const LIGHT_THEME = "LIGHT";
+  const DARK_THEME = "DARK";
+  const DARK_THEME_CLASS = "dark";
+  const toggle = document.querySelector("[data-theme-toggle]");
+  const rootEl = document.documentElement;
+
+  // Função para aplicar o tema
+  const applyTheme = (theme: string) => {
+    if (theme === DARK_THEME) {
+      rootEl.classList.add(DARK_THEME_CLASS);
+    } else {
+      rootEl.classList.remove(DARK_THEME_CLASS);
+    }
+  };
+
+  // Verificar localStorage
+  const storedTheme = window.localStorage.getItem(COLOR_MODE);
+
+  // Verificar preferências do sistema
+  const prefersDarkScheme = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
+  if (storedTheme) {
+    applyTheme(storedTheme);
+  } else if (prefersDarkScheme) {
+    applyTheme(DARK_THEME);
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      rootEl.classList.toggle(DARK_THEME_CLASS);
+      const colourMode = rootEl.classList.contains(DARK_THEME_CLASS)
+        ? DARK_THEME
+        : LIGHT_THEME;
+      window.localStorage.setItem(COLOR_MODE, colourMode);
+    });
+  }
+</script>
