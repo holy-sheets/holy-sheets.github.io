@@ -8,14 +8,6 @@ import Icons from "./Icons.astro";
 </button>
 
 <style>
-  button:hover {
-    transform: scale(0.9);
-  }
-
-  button:active {
-    transform: scale(1);
-  }
-
   .moon {
     display: none;
   }
@@ -37,7 +29,6 @@ import Icons from "./Icons.astro";
   const toggle = document.querySelector("[data-theme-toggle]");
   const rootEl = document.documentElement;
 
-  // Função para aplicar o tema
   const applyTheme = (theme: string) => {
     if (theme === DARK_THEME) {
       rootEl.classList.add(DARK_THEME_CLASS);
@@ -46,10 +37,7 @@ import Icons from "./Icons.astro";
     }
   };
 
-  // Verificar localStorage
   const storedTheme = window.localStorage.getItem(COLOR_MODE);
-
-  // Verificar preferências do sistema
   const prefersDarkScheme = window.matchMedia(
     "(prefers-color-scheme: dark)",
   ).matches;
