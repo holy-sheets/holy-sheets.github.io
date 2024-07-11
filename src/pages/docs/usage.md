@@ -35,4 +35,4 @@ await user.findMany({
 ```
 
 > [!WARNING]
-> Before using HolySheets, it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the [Getting Credentials](/docs/getting-credentials.md) guide.
+> Before using HolySheets, it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the [Getting Credentials](/docs/getting-credentials) guide.
