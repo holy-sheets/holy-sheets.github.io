@@ -26,7 +26,7 @@ const { items, active } = Astro.props;
     md:border-r-slate-200 md:border-r relative min-h-screen"
 >
   <ul
-    class="flex flex-col w-full gap-y-2 md:sticky md:top-0 h-[0px] min-h-auto"
+    class="flex flex-col w-full gap-y-2 md:sticky md:top-0 md:h-[0px] min-h-auto"
   >
     {
       items.map((item: SidebarItem) => {
@@ -37,7 +37,9 @@ const { items, active } = Astro.props;
               ${active === item.slug ? "bg-slate-200" : ""}`}
               href={item.href}
             >
-              <Icons icon={item.icon} />
+              <span class="text-sm flex">
+                <Icons icon={item.icon} />
+              </span>
               {item.label}
             </a>
             {item.children && item.children.length > 0 && (

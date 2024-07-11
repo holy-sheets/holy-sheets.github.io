@@ -3,6 +3,8 @@ import type { MarkdownLayoutProps } from "astro";
 import Sidebar, { type SidebarItem } from "../components/Sidebar.astro";
 import Main from "../components/Main.astro";
 import Header from "../components/Header.astro";
+import Icons from "../components/Icons.astro";
+import Footer from "../components/Footer.astro";
 
 type MarkdownModule = {
   frontmatter: {
@@ -118,6 +120,14 @@ type Props = MarkdownLayoutProps<{
 }>;
 
 const { title, slug } = Astro.props.frontmatter;
+const currentMenuIndex = sidebarItems.findIndex((item) => item.slug === slug);
+const { prev, next } = {
+  prev: currentMenuIndex === 0 ? null : sidebarItems[currentMenuIndex - 1],
+  next:
+    currentMenuIndex === sidebarItems.length - 1
+      ? null
+      : sidebarItems[currentMenuIndex + 1],
+};
 ---
 
 <html lang="en">
@@ -134,7 +144,30 @@ const { title, slug } = Astro.props.frontmatter;
       <Sidebar items={sidebarItems} active={slug} />
       <Main>
         <slot />
+        <div class="flex pt-8 mt-8 border-t border-t-slate-200">
+          {
+            prev && (
+              <a
+                class="text-blue-500 no-underline hover:underline flex"
+                href={prev.href}
+              >
+                <Icons icon="arrow-left" /> {prev.label}
+              </a>
+            )
+          }
+          {
+            next && (
+              <a
+                class="text-blue-500 ml-auto no-underline hover:underline flex"
+                href={next.slug}
+              >
+                {next.label} <Icons icon="arrow-right" />
+              </a>
+            )
+          }
+        </div>
       </Main>
     </div>
+    <Footer />
   </body>
 </html>
