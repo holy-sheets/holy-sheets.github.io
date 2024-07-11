@@ -22,19 +22,18 @@ const { items, active } = Astro.props;
 <aside
   class="flex md:w-[284px] bg-slate-100 p-4 md:px-6
     before:content-[''] before:absolute before:bg-slate-100
+    dark:before:bg-slate-900 dark:text-white dark:bg-slate-900
     before:h-full before:w-screen before:right-[100%] before:top-0
-    md:border-r-slate-200 md:border-r relative min-h-screen"
+    md:border-r-slate-200 dark:md:border-r-slate-700 md:border-r relative min-h-screen"
 >
-  <ul
-    class="flex flex-col w-full gap-y-2 md:sticky md:top-0 md:h-[0px] min-h-auto"
-  >
+  <ul class="flex flex-col w-full gap-y-2 md:top-0 min-h-auto">
     {
       items.map((item: SidebarItem) => {
         return (
           <li class="w-full">
             <a
-              class={`hover:bg-slate-200 transition p-2 rounded-lg w-full text-slate-800 flex
-              ${active === item.slug ? "bg-slate-200" : ""}`}
+              class={`hover:bg-slate-200 dark:hover:bg-slate-700 transition p-2 rounded-lg w-full text-slate-800 dark:text-white flex
+              ${active === item.slug ? "bg-slate-200 dark:bg-slate-700" : ""}`}
               href={item.href}
             >
               <span class="text-sm flex">
@@ -47,7 +46,7 @@ const { items, active } = Astro.props;
                 {item.children.map((child) => (
                   <li class="pl-4">
                     <a
-                      class="flex text-sm py-2 ml-4 text-slate-500 hover:text-slate-800 transition"
+                      class="flex text-sm py-2 ml-4 text-slate-500 dark:text-white hover:text-slate-800 transition"
                       href={child.href}
                     >
                       {child.label}

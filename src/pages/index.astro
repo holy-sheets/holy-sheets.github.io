@@ -16,10 +16,14 @@ import Header from "../components/Header.astro";
   </head>
   <body class="flex flex-col">
     <Header />
-    <main class="px-4 min-h-screen">
-      <div class="relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32">
+    <main
+      class="px-4 min-h-[calc(100vh_-_60px)] bg-white dark:bg-slate-900 pb-6"
+    >
+      <div
+        class="relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32 bg-white dark:bg-slate-900"
+      >
         <h1
-          class="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center"
+          class="text-slate-900 dark:text-white font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center"
         >
           Easily manipulate your <span class="text-brand-google-sheets"
             >Google Sheets</span

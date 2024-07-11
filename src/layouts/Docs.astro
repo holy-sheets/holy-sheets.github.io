@@ -48,41 +48,103 @@ const menuItems: MenuItem[] = [
         anchor: "base",
       },
       {
-        label: "findfirst",
+        label: "findFirst",
         anchor: "findfirst",
       },
       {
-        label: "findmany",
+        label: "findMany",
         anchor: "findmany",
       },
       {
-        label: "updatefirst",
+        label: "updateFirst",
         anchor: "updatefirst",
       },
       {
-        label: "updatemany",
+        label: "updateMany",
         anchor: "updatemany",
       },
       {
-        label: "clearfirst",
+        label: "clearFirst",
         anchor: "clearfirst",
       },
       {
-        label: "clearmany",
+        label: "clearMany",
         anchor: "clearmany",
       },
       {
-        label: "deletefirst",
+        label: "deleteFirst",
         anchor: "deletefirst",
       },
       {
-        label: "deletemany",
+        label: "deleteMany",
         anchor: "deletemany",
       },
     ],
   },
   {
     slug: "filters",
+    children: [
+      {
+        label: "equals",
+        anchor: "equals",
+      },
+      {
+        label: "not",
+        anchor: "not",
+      },
+      {
+        label: "in",
+        anchor: "in",
+      },
+      {
+        label: "notIn",
+        anchor: "notin",
+      },
+      {
+        label: "lt",
+        anchor: "lt",
+      },
+      {
+        label: "lte",
+        anchor: "lte",
+      },
+      {
+        label: "gt",
+        anchor: "gt",
+      },
+      {
+        label: "gte",
+        anchor: "gte",
+      },
+      {
+        label: "contains",
+        anchor: "contains",
+      },
+      {
+        label: "search",
+        anchor: "search",
+      },
+      {
+        label: "startsWith",
+        anchor: "startswith",
+      },
+      {
+        label: "endsWith",
+        anchor: "endswith",
+      },
+      {
+        label: "and",
+        anchor: "and",
+      },
+      {
+        label: "or",
+        anchor: "or",
+      },
+      {
+        label: "not",
+        anchor: "not",
+      },
+    ],
   },
   {
     slug: "note",
@@ -138,17 +200,19 @@ const { prev, next } = {
     <meta name="generator" content={Astro.generator} />
     <title>{title ? title + " - Holysheets!" : ""}</title>
   </head>
-  <body class="flex flex-col">
+  <body class="flex flex-col dark:bg-slate-900">
     <Header />
     <div class="flex flex-col md:flex-row container mx-auto relative">
       <Sidebar items={sidebarItems} active={slug} />
       <Main>
         <slot />
-        <div class="flex pt-8 mt-8 border-t border-t-slate-200">
+        <div
+          class="flex pt-8 mt-8 border-t border-t-slate-200 dark:border-t-slate-700"
+        >
           {
             prev && (
               <a
-                class="text-blue-500 no-underline hover:underline flex"
+                class="text-blue-500 dark:text-slate-200 no-underline hover:underline flex"
                 href={prev.href}
               >
                 <Icons icon="arrow-left" /> {prev.label}
@@ -158,7 +222,7 @@ const { prev, next } = {
           {
             next && (
               <a
-                class="text-blue-500 ml-auto no-underline hover:underline flex"
+                class="text-blue-500 dark:text-slate-200 ml-auto no-underline hover:underline flex"
                 href={next.href}
               >
                 {next.label} <Icons icon="arrow-right" />

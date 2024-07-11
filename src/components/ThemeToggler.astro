@@ -1,0 +1,21 @@
+---
+
+---
+
+<div>
+  <script is:inline>
+    const configs = {
+      key: "theme",
+      dark: "dark",
+      light: "light",
+    };
+    const themeLocalStorage = localStorage.getItem(configs.key);
+    const themeSystem = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? configs.dark
+      : configs.light;
+    const theme = themeLocalStorage || themeSystem;
+    document.documentElement.setAttribute("class", theme);
+  </script>
+  <button data-sel="button"></button>
+</div>
