@@ -5,6 +5,10 @@ export interface SidebarItem {
   label: string;
   href: string;
   slug: string;
+  children?: {
+    label: string;
+    href: string;
+  }[];
 }
 
 interface Props {
@@ -16,12 +20,14 @@ const { items, active } = Astro.props;
 ---
 
 <aside
-  class="flex md:min-h-screen md:w-[284px] bg-slate-100 p-4 md:px-6
-    md:sticky before:content-[''] before:absolute before:bg-slate-100 top-0
+  class="flex md:w-[284px] bg-slate-100 p-4 md:px-6
+    before:content-[''] before:absolute before:bg-slate-100
     before:h-full before:w-screen before:right-[100%] before:top-0
-    md:border-r-slate-200 md:border-r"
+    md:border-r-slate-200 md:border-r relative min-h-screen"
 >
-  <ul class="flex flex-col w-full gap-y-2">
+  <ul
+    class="flex flex-col w-full gap-y-2 md:sticky md:top-0 h-[0px] min-h-auto"
+  >
     {
       items.map((item: SidebarItem) => {
         return (
@@ -34,6 +40,20 @@ const { items, active } = Astro.props;
               <Icons icon={item.icon} />
               {item.label}
             </a>
+            {item.children && item.children.length > 0 && (
+              <ul>
+                {item.children.map((child) => (
+                  <li class="pl-4">
+                    <a
+                      class="flex text-sm py-2 ml-4 text-slate-500 hover:text-slate-800 transition"
+                      href={child.href}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         );
       })

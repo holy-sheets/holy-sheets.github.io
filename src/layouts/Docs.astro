@@ -20,16 +20,75 @@ const docs: Record<string, MarkdownModule> = import.meta.glob(
   },
 );
 
-const slugs = [
-  "introduction",
-  "usage",
-  "getting-credentials",
-  "api",
-  "filters",
-  "note",
+type MenuItem = {
+  slug: string;
+  children?: {
+    label: string;
+    anchor: string;
+  }[];
+};
+
+const menuItems: MenuItem[] = [
+  {
+    slug: "introduction",
+  },
+  {
+    slug: "usage",
+  },
+  {
+    slug: "getting-credentials",
+  },
+  {
+    slug: "api",
+    children: [
+      {
+        label: "base",
+        anchor: "base",
+      },
+      {
+        label: "findfirst",
+        anchor: "findfirst",
+      },
+      {
+        label: "findmany",
+        anchor: "findmany",
+      },
+      {
+        label: "updatefirst",
+        anchor: "updatefirst",
+      },
+      {
+        label: "updatemany",
+        anchor: "updatemany",
+      },
+      {
+        label: "clearfirst",
+        anchor: "clearfirst",
+      },
+      {
+        label: "clearmany",
+        anchor: "clearmany",
+      },
+      {
+        label: "deletefirst",
+        anchor: "deletefirst",
+      },
+      {
+        label: "deletemany",
+        anchor: "deletemany",
+      },
+    ],
+  },
+  {
+    slug: "filters",
+  },
+  {
+    slug: "note",
+  },
 ];
 
-const sidebarItems: SidebarItem[] = slugs.map((slug) => {
+const sidebarItems: SidebarItem[] = menuItems.map((menuItem) => {
+  const slug = menuItem.slug;
   const doc = Object.values(docs || {}).find(
     (doc) => doc.frontmatter.slug === slug,
   );
@@ -40,6 +99,14 @@ const sidebarItems: SidebarItem[] = slugs.map((slug) => {
     label: doc.frontmatter.title,
     href: doc.url,
     slug: doc.frontmatter.slug,
+    children: [
+      ...(menuItem.children || []).map((child) => {
+        return {
+          label: child.label,
+          href: `${doc.url}#${child.anchor}`,
+        };
+      }),
+    ],
   };
 });
 
@@ -63,7 +130,7 @@ const { title, slug } = Astro.props.frontmatter;
   </head>
   <body class="flex flex-col">
     <Header />
-    <div class="flex flex-col md:flex-row container mx-auto">
+    <div class="flex flex-col md:flex-row container mx-auto relative">
       <Sidebar items={sidebarItems} active={slug} />
       <Main>
         <slot />
