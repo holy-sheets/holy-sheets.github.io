@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/Docs.astro
-title: "Introduction"
+title: Introduction
 slug: introduction
 icon: book
 ---
