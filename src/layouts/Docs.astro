@@ -16,7 +16,7 @@ type MarkdownModule = {
 };
 
 const docs: Record<string, MarkdownModule> = import.meta.glob(
-  "../pages/docs/**/*.md",
+  "../pages/docs/**/*.{md,mdx}",
   {
     eager: true,
   },

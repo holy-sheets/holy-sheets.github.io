@@ -5,6 +5,8 @@ slug: usage
 icon: play
 ---
 
+import Alert from '../../components/Alert.astro'
+
 # Usage
 
 To use `HolySheets!` in your TypeScript project, you need to import it and initialize it with your Google Sheets credentials. Here's an example:
@@ -34,5 +36,7 @@ await user.findMany({
 /// Find all users named Joe in Users sheet
 ```
 
-> [!WARNING]
-> Before using HolySheets, it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the [Getting Credentials](/docs/getting-credentials) guide.
+<Alert type="warning">
+  Before using HolySheets, it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the [Getting Credentials](/docs/getting-credentials) guide.
+</Alert>
+

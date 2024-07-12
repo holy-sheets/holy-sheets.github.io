@@ -1,8 +1,67 @@
 ---
+import Icons from "./Icons.astro";
+type IconType = "note" | "tip" | "important" | "warning" | "caution";
 
+type Props = {
+  type?: IconType;
+};
+
+type Configs = {
+  icon: string;
+  text: "Note" | "Tip" | "Important" | "Warning" | "Caution";
+  fillClass: string;
+  textClass: string;
+  borderClass: string;
+};
+
+const configs: Record<IconType, Configs> = {
+  note: {
+    icon: "octicon/info",
+    text: "Note",
+    fillClass: "fill-blue-500",
+    textClass: "text-blue-500",
+    borderClass: "border-blue-500",
+  },
+  tip: {
+    icon: "octicon/light-bulb",
+    text: "Tip",
+    fillClass: "fill-green-500",
+    textClass: "text-green-500",
+    borderClass: "border-green-500",
+  },
+  important: {
+    icon: "octicon/report",
+    text: "Important",
+    fillClass: "fill-purple-500",
+    textClass: "text-purple-500",
+    borderClass: "border-purple-500",
+  },
+  warning: {
+    icon: "octicon/alert",
+    text: "Warning",
+    fillClass: "fill-orange-500",
+    textClass: "text-orange-500",
+    borderClass: "border-orange-500",
+  },
+  caution: {
+    icon: "octicon/stop",
+    text: "Caution",
+    fillClass: "fill-red-500",
+    textClass: "text-red-500",
+    borderClass: "border-red-500",
+  },
+};
+
+const { type = "warning" } = Astro.props;
+const { icon, fillClass, textClass, borderClass, text } = configs[type];
 ---
 
-<div>
-  bunda
-  <slot />
+<div class={`border-l-2 ${borderClass} pb-2`}>
+  <p class={`flex ${textClass} font-semibold items-center pl-4`}>
+    <Icons icon={icon} className={`mr-2 text-md ${fillClass} ${borderClass}`} />
+    <span class="text-sm md:text-base">{text}</span>
+  </p>
+  <div class="px-6">
+    <slot />
+  </div>
 </div>
