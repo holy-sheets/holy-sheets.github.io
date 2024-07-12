@@ -2,9 +2,9 @@
 import Icons from "./Icons.astro";
 ---
 
-<button aria-label="Theme toggler" data-theme-toggle>
-  <span class="sun"> <Icons icon="sun" /></span>
-  <span class="moon"> <Icons icon="moon" /></span>
+<button aria-label="Theme toggler" data-theme-toggle class="flex items-center">
+  <span class="sun"> <Icons icon="sun" className="fill-yellow-500" /></span>
+  <span class="moon"> <Icons icon="moon" className="fill-blue-700" /></span>
 </button>
 
 <style>
