@@ -5,7 +5,8 @@ type Props = {
 };
 
 const { icon, className = "" } = Astro.props;
-const completeClassName = `text-[inherit] w-[1em] mx-2 fill-slate-600 ${className}`;
+const defaultFill = className.includes("fill-") ? "" : "fill-slate-600";
+const completeClassName = `text-[inherit] w-[1em] mx-2 ${defaultFill} ${className}`;
 ---
 
 {
