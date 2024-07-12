@@ -176,12 +176,11 @@ const sidebarItems: SidebarItem[] = menuItems.map((menuItem) => {
 
 type Props = MarkdownLayoutProps<{
   title: string;
-  previous?: string;
-  next?: string;
   slug: string;
+  description: string;
 }>;
 
-const { title, slug } = Astro.props.frontmatter;
+const { title, slug, description } = Astro.props.frontmatter;
 const currentMenuIndex = sidebarItems.findIndex((item) => item.slug === slug);
 const { prev, next } = {
   prev: currentMenuIndex === 0 ? null : sidebarItems[currentMenuIndex - 1],
@@ -198,6 +197,7 @@ const { prev, next } = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <title>{title ? title + " - Holysheets!" : ""}</title>
   </head>
   <body class="flex flex-col dark:bg-slate-900">

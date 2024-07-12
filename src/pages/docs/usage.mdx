@@ -3,6 +3,7 @@ layout: ../../layouts/Docs.astro
 title: Usage
 slug: usage
 icon: play
+description: Learn how to use HolySheets in your TypeScript project.
 ---
 
 import Alert from '../../components/Alert.astro'
@@ -18,7 +19,7 @@ interface User {
   age: number;
 }
 
-const hollySheets = new HolySheets({
+const holySheets = new HolySheets({
   spreadsheetId: "spreadsheet-id",
   privateKey: credentials.private_key, // Your credentials
   clientEmail: credentials.client_email, // Your client email
