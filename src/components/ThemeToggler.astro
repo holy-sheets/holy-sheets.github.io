@@ -21,7 +21,7 @@ import Icons from "./Icons.astro";
   }
 </style>
 
-<script>
+<script is:inline>
   const COLOR_MODE = "COLOR_MODE";
   const LIGHT_THEME = "LIGHT";
   const DARK_THEME = "DARK";
@@ -29,7 +29,7 @@ import Icons from "./Icons.astro";
   const toggle = document.querySelector("[data-theme-toggle]");
   const rootEl = document.documentElement;
 
-  const applyTheme = (theme: string) => {
+  const applyTheme = (theme) => {
     if (theme === DARK_THEME) {
       rootEl.classList.add(DARK_THEME_CLASS);
     } else {
