@@ -3,14 +3,14 @@ layout: ../../layouts/Docs.astro
 title: Usage
 slug: usage
 icon: play
-description: Learn how to use HolySheets in your TypeScript project.
+description: Learn how to use Holysheets!in your TypeScript project.
 ---
 
 import Alert from '../../components/Alert.astro'
 
 # Usage
 
-To use `HolySheets!` in your TypeScript project, you need to import it and initialize it with your Google Sheets credentials. Here's an example:
+To use `Holysheets!` in your TypeScript project, you need to import it and initialize it with your Google Sheets credentials. Here's an example:
 
 ```typescript
 interface User {
@@ -19,7 +19,7 @@ interface User {
   age: number;
 }
 
-const holySheets = new HolySheets({
+const holySheets = new Holysheets!{
   spreadsheetId: "spreadsheet-id",
   privateKey: credentials.private_key, // Your credentials
   clientEmail: credentials.client_email, // Your client email
@@ -38,6 +38,6 @@ await user.findMany({
 ```
 
 <Alert type="warning">
-  Before using HolySheets, it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the [Getting Credentials](/docs/getting-credentials) guide.
+  Before using Holysheets! it's important to have Google credentials for your project. For more information on how to obtain these, please refer to the [Getting Credentials](/docs/getting-credentials) guide.
 </Alert>
 
